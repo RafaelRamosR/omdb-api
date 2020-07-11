@@ -1,12 +1,11 @@
-/* import Home from "./home.controller";
-import Posts from "./posts.controller";
-import NotFound from "./404.controller";
+import { Login } from "./login.controller.js";
+import { posts } from "./posts.controller.js";
+import { notFound } from "./404.controller.js";
 
 const pages = {
-  home: Home,
-  posts: Posts,
-  notFound: NotFound,
+  login: Login,
+  posts: posts,
+  notFound: notFound,
 };
 
 export { pages };
- */

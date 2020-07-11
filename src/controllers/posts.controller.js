@@ -1,18 +1,18 @@
-/* import view from '../view/posts.html';
+import { postsView } from '../views/posts.js';
 
-const getPosts = async () => {
+/* const getPosts = async () => {
   const response = await fetch("https://jsonplaceholder.typicode.com/posts");
   return await response.json();
-};
+}; */
 
-export default async () => {
+const /* async */ posts = () => {
   const divElement = document.createElement("div");
-  divElement.innerHTML = view;
+  divElement.innerHTML = postsView;
 
   const postsElement = divElement.querySelector("#posts");
   const totalPosts = divElement.querySelector('#total');
 
-  const posts = await getPosts();
+  /* const posts = await getPosts();
 
   posts.forEach((post) => {
     postsElement.innerHTML += `
@@ -25,8 +25,9 @@ export default async () => {
     `;
   });
 
-  totalPosts.innerHTML += posts.length;
+  totalPosts.innerHTML += posts.length; */
 
   return divElement;
 };
- */
+
+export { posts };

@@ -1,8 +1,9 @@
-/* import view from "../view/404.html";
+import { viewNotFound } from "../views/404.js";
 
-export default () => {
+const notFound = () => {
   const divElement = document.createElement("div");
-  divElement.innerHTML = view;
+  divElement.innerHTML = viewNotFound;
   return divElement;
 };
- */
+
+export { notFound };
