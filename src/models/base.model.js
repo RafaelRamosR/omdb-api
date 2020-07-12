@@ -1,8 +1,11 @@
 /*
   Save data to current localStorage
 */
-const setStorage = (key, value) => {
-  localStorage.setItem(key, value);
+const setStorage = (key, value, storage) => {
+  if(storage){
+    return sessionStorage.setItem(key, value);
+  }
+  return localStorage.setItem(key, value);
 };
 
 /*
@@ -32,3 +35,20 @@ const deleteStorage = (key, divContent) => {
   divContent.remove();
   // localStorage.removeItem(key);
 };
+
+/*
+  session
+*/
+const verificateSession = () => {
+  return sessionStorage.getItem('userSession')
+}
+
+const model = {
+  verificateSession,
+  setStorage,
+  getStorage,
+  getAllStorage,
+  deleteStorage,
+}
+
+export { model };

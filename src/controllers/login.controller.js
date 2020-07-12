@@ -1,18 +1,33 @@
+import { model } from '../models/base.model.js';
 import {viewLogin} from '../views/login.js'
 
-const Login = () => {
+const login = () => {
   const divElement = document.createElement('div');
   divElement.innerHTML = viewLogin;
 
   const formLogin = divElement.querySelector('#formLogin');
   
   formLogin.addEventListener('submit', (e) => {
-    e.preventDefault()
-    console.log(e.target.username.value)
-    console.log(e.target.password.value)
+    e.preventDefault();
+    const et = e.target;
+    const username = et.username.value;
+    const password = et.password.value;
+    // generate supremely secure ID xd
+    const key = btoa(username + password);
+
+    // Create object containing the data to store
+    const userObject = {
+      id: key,
+      name: username,
+      pass: password,
+    };
+    // Save task
+    model.setStorage(key, JSON.stringify(userObject));
+    sessionStorage.setItem('loginStatus', 'true');
+    formLogin.reset();
   });
 
   return divElement;
 };
 
-export { Login };
+export { login };

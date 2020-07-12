@@ -1,11 +1,17 @@
-import { Login } from "./login.controller.js";
+import { login } from "./login.controller.js";
 import { posts } from "./posts.controller.js";
 import { notFound } from "./404.controller.js";
+import { favorite } from "./favorite.controller.js";
+import { singOut } from "./singout.controller.js";
+import { loginReturn } from "./loginReturn.controller.js";
 
 const pages = {
-  login: Login,
+  login: login,
   posts: posts,
   notFound: notFound,
+  favorite: favorite,
+  singout: singOut,
+  loginReturn: loginReturn,
 };
 
 export { pages };
