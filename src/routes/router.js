@@ -1,6 +1,6 @@
 import { pages } from '../controllers/index.js';
 
-const router = (route) => {
+const router = async (route) => {
   let content = document.getElementById("root");
   content.innerHTML = "";
 
@@ -18,7 +18,7 @@ const router = (route) => {
       return content.appendChild(pages.login());
     }
     case "#/home": {
-      return content.appendChild(pages.posts());
+      return content.appendChild(await pages.posts());
     }
     case "#/favorite": {
       return content.appendChild(pages.favorite());
@@ -27,7 +27,7 @@ const router = (route) => {
       return content.appendChild(pages.singout());
     }
     default: {
-      return content.appendChild(pages.notFound());
+      return content.appendChild(await pages.notFound());
     }
   }
 
