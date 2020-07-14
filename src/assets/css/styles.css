@@ -1,0 +1,150 @@
+:root {
+  /* colors */
+  --green: #2FBF71;
+  --yellow: #FFB30F;
+  --red: #FD151B;
+  --white: #FFFFFF;
+}
+
+body {
+  background-color: #D1D7DC;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.container-title {
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.row {
+  padding: 1em 3rem;
+  font-size: 1.2em;
+}
+
+/* Form styles */
+
+.form-main {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  grid-auto-rows: minmax(auto);
+  grid-gap: 15px;
+}
+
+.form-group-text {
+  grid-column: 1/3;
+  grid-row: 2;
+}
+
+.form-group-pass {
+  grid-column: 3/5;
+  grid-row: 2;
+}
+
+.form-input-text {
+  box-sizing: border-box;
+  width: 100%;
+  outline: none;
+  background: #f5f5f5;
+  border: 1px solid #e5e5e5;
+  font-size: .9em;
+  padding: .8em .5em;
+  border-radius: 5px;
+}
+
+.form-group-radio {
+  background-color: var(--white);
+  border-color: var(--yellow);
+  display: block;
+  margin: 10px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.form-group-radio input {
+  width: 32px;
+  height: 32px;
+  z-index: 2;
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  cursor: pointer;
+  visibility: hidden;
+}
+
+/*size*/
+
+.form-group-radio label {
+  width: 100%;
+  height: 250px;
+  display: block;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.form-group-radio label[for="radioColor1"] {
+  background-image: url("../img/avatar1.png");
+}
+
+.form-group-radio label[for="radioColor2"] {
+  background-image: url("../img/avatar2.png");
+}
+
+.form-group-radio label[for="radioColor3"] {
+  background-image: url("../img/avatar3.png");
+}
+
+.form-group-radio label[for="radioColor4"] {
+  background-image: url("../img/avatar4.png");
+}
+
+.form-group-radio :checked~label {
+  box-shadow: inset 0 0 0 5px #009688;
+  transition: all 0.5s ease-out;
+}
+
+.btn-submit {
+  background: #2F558E;
+  height: 200%;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  font-size: 1.3em;
+  line-height: .9em;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 5px 0 0 #1D3C6A;
+  grid-column: 2/4;
+  grid-row: 3;
+}
+
+@media (max-width: 800px) {
+  .form-main {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .btn-submit {
+    height: 50%;
+    margin-bottom: 10%;
+    grid-column: 1/3;
+    grid-row: 4;
+  }
+  .form-group-text {
+    grid-column: 1/2;
+    grid-row: 3;
+  }
+  .form-group-pass {
+    grid-column: 2/3;
+    grid-row: 3;
+  }
+}

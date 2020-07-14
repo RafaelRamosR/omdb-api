@@ -1,0 +1,151 @@
+.formSearch {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  justify-content: center;
+  align-content: center;
+}
+
+.search-input {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid #009688;
+  padding: 1em 0 0.8em;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: inherit;
+  outline: none;
+}
+
+.btn-search {
+  height: 1.5em;
+  margin-bottom: 20px;
+  background-color: #2F558E;
+  box-shadow: 0 5px 0 0 #1D3C6A;
+  grid-column: 1;
+  grid-row: 2;
+  justify-self:center;
+}
+
+.btn-search:active {
+  box-shadow: 0 0 transparent;
+}
+
+.card-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
+  grid-auto-rows: 200px;
+  grid-auto-flow: row dense;
+  grid-gap: 23px;
+  justify-content: center;
+}
+
+.card-title {
+  font-size: 1.2em;
+}
+
+.card-right, .card-left {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100%;
+  width: 100%;
+  border-radius: 95.2380952381px;
+  box-shadow: 0px 3px 9px 1px rgba(0, 10, 20, 0.2);
+  background-color: #ffffff;
+}
+
+.card-right {
+  flex-direction: row-reverse;
+  grid-column: auto / span 2;
+  grid-row: auto / span 1;
+}
+
+.card-left {
+  flex-direction: row;
+  grid-column: auto / span 2;
+  grid-row: auto / span 1;
+}
+
+.card-image {
+  display: flex;
+}
+
+.card-left .card-image, .card-right .card-image {
+  height: 100%;
+  width: 50%;
+}
+
+.card-image img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-right img {
+  border-radius: 0 95.2380952381px 95.2380952381px 0;
+}
+
+.card-left img {
+  border-radius: 95.2380952381px 0 0 95.2380952381px;
+}
+
+.card-text {
+  align-self: center;
+  padding: 23px;
+}
+
+.card-right .card-text {
+  height: 80%;
+  width: 50%;
+  padding-left: 36.8px;
+}
+
+.card-left .card-text {
+  height: 80%;
+  width: 50%;
+  padding-right: 36.8px;
+}
+
+.card-text p {
+  margin: 0;
+  line-height: 1.35em;
+  color: #334455;
+}
+
+.add-favorite, .remove-favorite {
+  position: relative;
+  font-size: 1.1em;
+  cursor: pointer;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+.add-favorite::before {
+  content: "⭐";
+}
+
+.remove-favorite::before {
+  content: "🤩";
+}
+
+.notResult {
+  width: 100%;
+  position: fixed;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+@media (max-width: 400px) {
+  .card-image {
+    width: 38% !important;
+  }
+
+  .card-text {
+    width: 62% !important;
+  }
+}

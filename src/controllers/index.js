@@ -1,5 +1,5 @@
 import { login } from "./login.controller.js";
-import { posts } from "./posts.controller.js";
+import { posts } from "./search.controller.js";
 import { notFound } from "./404.controller.js";
 import { favorite } from "./favorite.controller.js";
 import { singOut } from "./singout.controller.js";

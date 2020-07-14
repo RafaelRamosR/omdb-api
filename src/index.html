@@ -5,20 +5,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./assets/css/normalize.css">
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  <link rel="stylesheet" href="./assets/css/navbar.css">
+  <link rel="stylesheet" href="./assets/css/films.css">
   <title>OMDb API</title>
 </head>
 
 <body>
-  <nav>
-    <a href="#/login">Login</a>
-    <a href="#/home">Inicio</a>
-    <a href="#/favorite">Favoritos</a>
-    <a href="#/sing-out">Cerrar sesión</a>
+  <nav class="nav">
+    <div class="nav-brand">OMDb API</div>
+    <div class="nav-link nav-link-toggle">👀</div>
+    <ul class="nav-items">
+      <li class="nav-link"><a class="nav-link--a" href="#/home">Home</a></li>
+      <li class="nav-link"><a class="nav-link--a" href="#/favorite">Favorites</a></li>
+    </ul>
+    <ul class="nav-items right">
+      <li class="nav-link"><a class="nav-link--a" href="#/login">Login</a></li>
+      <li class="nav-link"><a class="nav-link--a" href="#/sing-out">Cerrar sesión</a></li>
+    </ul>
   </nav>
-  <main id="root" class="container">
-    
-  </main>
+  <main id="root" class="container"></main>
   <script type="module" src="main.js"></script>
 </body>
 
