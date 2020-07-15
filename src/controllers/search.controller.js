@@ -29,11 +29,11 @@ const posts = async () => {
 
       // Inssertar las tarjetas donse se muestran las películas
       searchResults.forEach((e) => {
-        let favoriteClass = '';
-        if (model.getUserData('movies').includes(e.imdbID)) {
-          favoriteClass = 'remove-favorite';
-        } else {
-          favoriteClass = 'add-favorite';
+        const includeMovie = model.getUserData('movies').includes(e.imdbID);
+        const favoriteClass = includeMovie === true ? 'remove-favorite' : 'add-favorite';
+
+        if (e.Poster === 'N/A') {
+          e.Poster = './assets/img/not-found.png';
         }
 
         filmSearchSection.innerHTML += `

@@ -1,7 +1,7 @@
 const viewLogin = `
   <h1 class="container-title">LOGIN</h1>
   <section class="row">
-    <form class="form-main" id="formLogin" autocomplete="off">
+    <form class="form-main" autocomplete="off">
       <div class="form-group-radio">
         <input id="radioColor1" type="radio" name="avatar" value="avatar1.png">
         <label for="radioColor1"></label>

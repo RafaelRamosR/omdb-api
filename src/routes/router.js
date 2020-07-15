@@ -1,38 +1,50 @@
 import { pages } from '../controllers/index.js';
 
-const router = async (route) => {
-  let content = document.getElementById("root");
-  content.innerHTML = "";
-
-  const loginStatus = sessionStorage.getItem('loginStatus')
+const routeValidation = (route) => {
+  const loginStatus = sessionStorage.getItem('loginStatus');
   if(loginStatus === null){
     sessionStorage.setItem('loginStatus', 'false');
   }
-
-  if(loginStatus === 'false' && route !== '#/login'){
-    return content.appendChild(pages.loginReturn());
+  
+  if(loginStatus === 'false'){
+    location.replace('#/login');
   }
+
+  if(loginStatus === 'true' && route === '#/login'){
+    location.replace('#/home');
+  }
+}
+
+const router = async (route) => {
+  const fragment = document.createDocumentFragment();
+  let content = document.getElementById("root");
+  content.innerHTML = '';
+
+  routeValidation(route);
 
   switch (route) {
     case "#/login": {
-      return content.appendChild(pages.login());
+      fragment.appendChild(pages.login());
+      break;
     }
     case "#/home": {
-      return content.appendChild(await pages.posts());
+      fragment.appendChild(await pages.posts());
+      break;
     }
     case "#/favorite": {
-      return content.appendChild(await pages.favorite());
+      fragment.appendChild(await pages.favorite());
+      break;
     }
     case "#/sing-out": {
-      return content.appendChild(pages.singout());
+      fragment.appendChild(pages.singout());
+      break;
     }
     default: {
-      return content.appendChild(await pages.notFound());
+      fragment.appendChild(await pages.notFound());
     }
   }
 
+  return content.appendChild(fragment);
 };
 
 export { router };
-
-// module.exports = router;
