@@ -1,13 +1,5 @@
 import { model } from '../models/base.model.js';
 import { searchView } from '../views/search.view.js';
-// const responsePromise = [];
-const getFilms = async (typeSearch, film, page = 1) => {
-  const key = '8cba7ddb';
-  const response = await fetch(
-    `http://www.omdbapi.com/?${typeSearch}=${film}&page=${page}&type=movie&apikey=${key}`
-  );
-  return response.json();
-};
 
 const posts = async () => {
   const fragment = document.createDocumentFragment();
@@ -30,40 +22,32 @@ const posts = async () => {
     filmSearchSection.innerHTML = '';
 
     // Hacer la petición de la búqueda
-    const data = await getFilms('s', nameFilm);
+    const data = await model.getMovies('s', nameFilm);
     if (data.Response === 'True') {
       const searchResults = data.Search;
-      console.log(data.totalResults);
+      // console.log(data.totalResults);
 
       // Inssertar las tarjetas donse se muestran las películas
       searchResults.forEach((e) => {
         let favoriteClass = '';
-        let msgTitle = '';
-        let imgPoster = '';
-        if(e.Poster === 'N/A'){
-          imgPoster = './assets/img/not-found.png';
-        }else{
-          imgPoster = e.Poster;
-        }
-
         if (model.getUserData('movies').includes(e.imdbID)) {
           favoriteClass = 'remove-favorite';
-        }else{
+        } else {
           favoriteClass = 'add-favorite';
         }
 
         filmSearchSection.innerHTML += `
-        <div class='card-left'>
-          <div class='card-image'>
-            <img src='${imgPoster}'>
+          <div class='card-left'>
+            <div class='card-image'>
+              <img src='${e.Poster}'>
+            </div>
+            <div class='card-text'>
+              <button class="btn-favorite ${favoriteClass}" data-id="${e.imdbID}"></button>
+              <h1 class="card-title">${e.Title}</h1>
+              <p>${e.Year}</p>
+            </div>
           </div>
-          <div class='card-text'>
-            <button class="btn-favorite ${favoriteClass}" data-id="${e.imdbID}"></button>
-            <h1 class="card-title">${e.Title}</h1>
-            <p>${e.Year}</p>
-          </div>
-        </div>
-      `;
+        `;
       });
 
       // Seleccionar todos los botones de favoritos
@@ -75,8 +59,8 @@ const posts = async () => {
           model.favoriteToggle(e.target.dataset.id);
         });
       });
-    }else{
-      filmSearchSection.innerHTML = '<p class="notResult">No se encontraron resultados</p>';
+    } else {
+      filmSearchSection.innerHTML = '<p class="notResult">No se encontraron resultados 🧐</p>';
     }
   });
 

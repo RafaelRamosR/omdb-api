@@ -108,6 +108,19 @@ const favoriteToggle = (idMovie) => {
   setUserData('movies', arrMovies);
 }
 
+const getMovies = async (typeSearch, movie, page = 1) => {
+  const key = '8cba7ddb';
+    const response = await fetch(
+      `http://www.omdbapi.com/?${typeSearch}=${movie}&page=${page}&type=movie&apikey=${key}`
+    );
+    const data = await response.json();
+
+    if (data.Poster === 'N/A') {
+      data.Poster = './assets/img/not-found.png';
+    }
+  return data;
+};
+
 const model = {
   verificateSession,
   setStorage,
@@ -115,6 +128,7 @@ const model = {
   setUserData,
   getUserData,
   favoriteToggle,
+  getMovies,
 }
 
 export { model };

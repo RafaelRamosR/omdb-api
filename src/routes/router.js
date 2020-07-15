@@ -21,7 +21,7 @@ const router = async (route) => {
       return content.appendChild(await pages.posts());
     }
     case "#/favorite": {
-      return content.appendChild(pages.favorite());
+      return content.appendChild(await pages.favorite());
     }
     case "#/sing-out": {
       return content.appendChild(pages.singout());
