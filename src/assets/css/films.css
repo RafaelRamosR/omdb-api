@@ -140,6 +140,27 @@
   text-align: center;
 }
 
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+.pageNum {
+  padding: .5em 1em;
+  border-radius: 100px;
+  margin: 10px;
+  display: inline-block;
+  background: #a9acd8;
+  cursor: pointer;
+}
+
+.navActive {
+  background: #0771ca;
+  color: white;
+}
+
 @media (max-width: 400px) {
   .card-image {
     width: 38% !important;

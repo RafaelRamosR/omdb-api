@@ -28,18 +28,22 @@ const router = async (route) => {
       break;
     }
     case "#/home": {
-      fragment.appendChild(await pages.posts());
+      fragment.appendChild(await pages.searchMovie());
       break;
     }
     case "#/favorite": {
       fragment.appendChild(await pages.favorite());
       break;
     }
+    case "#/info": {
+      fragment.appendChild(pages.infoMovie());
+      break;
+    }
     case "#/logout": {
      return pages.logout();
     }
     default: {
-      fragment.appendChild(await pages.notFound());
+      fragment.appendChild(pages.notFound());
     }
   }
 

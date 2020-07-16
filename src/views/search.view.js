@@ -9,6 +9,8 @@ const searchView = `
   </article>
   <article class="card-container">
   </article>
+  <footer class="pagination">
+  </footer>
 `;
 
 export { searchView };
