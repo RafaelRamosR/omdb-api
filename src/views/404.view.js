@@ -1,8 +1,8 @@
-const viewNotFound = `<h2>404</h2>
-<h2>Home View</h2>
-<button id="btnClick">
-  Click Me!
-</button>
+const viewNotFound = `
+  <div class="error-content">
+    <h1>Error 404</h1>
+    <p  class="error-emoji">🤯</p>
+  </div>
 `;
 
 export { viewNotFound };

@@ -129,6 +129,24 @@ body {
   grid-row: 3;
 }
 
+.error {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-content {
+  width: 100%;
+  text-align: center;
+  font-size: 2.3em;
+}
+
+.error-emoji {
+  font-size: 2em;
+  margin: 0;
+}
+
 @media (max-width: 800px) {
   .form-main {
     grid-template-columns: repeat(2, 1fr);
