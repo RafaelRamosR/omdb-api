@@ -1,24 +1,7 @@
 import { model } from '../models/base.model.js';
-import { viewLogin } from '../views/login.view.js'
-
-const userVerification = (key, picture, username, password) => {
-  const localData = model.getStorage(key);
-  let userData = {};
-
-  if (localData !== null) {
-    userData = localData;
-    return userData;
-  }
-
-  userData = {
-    id: key,
-    photo: picture,
-    name: username,
-    pass: password,
-    favoriteMovies: [],
-  }
-  return userData;
-}
+import { navbarItemsToggle } from '../helpers/navbar.helper.js';
+import { userVerification } from '../helpers/login.helper.js';
+import { viewLogin } from '../views/login.view.js';
 
 const login = () => {
   const divElement = document.createElement('div');
@@ -39,6 +22,7 @@ const login = () => {
     model.setStorage(key, userObject);
     sessionStorage.setItem('loginStatus', 'true');
     sessionStorage.setItem('userId', key);
+    navbarItemsToggle(true);
     location.replace('#/home');
   });
 

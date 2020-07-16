@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" type="images/png" href="./assets/img/favicon.png">
   <link rel="stylesheet" href="./assets/css/normalize.css">
   <link rel="stylesheet" href="./assets/css/styles.css">
   <link rel="stylesheet" href="./assets/css/navbar.css">
@@ -21,8 +22,10 @@
       <li class="nav-link"><a class="nav-link--a" href="#/favorite">Favorites</a></li>
     </ul>
     <ul class="nav-items right">
-      <li class="nav-link"><a class="nav-link--a" href="#/login">Login</a></li>
-      <li class="nav-link"><a class="nav-link--a" href="#/sing-out">Cerrar sesión</a></li>
+      <li id="infoUser"class="hidden nav-link avatar-items">
+      </li>
+      <li id="login" class="nav-link"><a class="nav-link--a" href="#/login">Login</a></li>
+      <li id="logout" class="nav-link hidden"><a class="nav-link--a" href="#/logout">Cerrar sesión</a></li>
     </ul>
   </nav>
   <main id="root" class="container"></main>

@@ -35,9 +35,8 @@ const router = async (route) => {
       fragment.appendChild(await pages.favorite());
       break;
     }
-    case "#/sing-out": {
-      fragment.appendChild(pages.singout());
-      break;
+    case "#/logout": {
+     return pages.logout();
     }
     default: {
       fragment.appendChild(await pages.notFound());

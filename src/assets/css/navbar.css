@@ -35,6 +35,28 @@
   display: none;
 }
 
+.avatar-items {
+  display: flex;
+  position: relative;
+}
+
+.avatar-name {
+  color: red;
+}
+
+.avatar-img {
+  position: absolute;
+  display: flex;
+  max-width: 70%;
+  border-radius: 50%;
+  top: -40%;
+  left: -90%;
+}
+
+.hidden {
+  display: none;
+}
+
 @media only screen and (max-width: 768px) {
   .nav-items, .nav {
     padding: 16px;
@@ -59,5 +81,8 @@
   }
   .nav-toggleShow {
     display: flex;
+  }
+  .avatar-img {
+    display: none;
   }
 }

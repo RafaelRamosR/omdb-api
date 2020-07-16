@@ -17,3 +17,4 @@ const classToggle = () => {
 
 const btnNav = document.querySelector('.nav-link-toggle');
 btnNav.addEventListener('click', classToggle);
+
