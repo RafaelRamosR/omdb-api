@@ -25,7 +25,7 @@ const viewLogin = `
       </div>
       <div class="form-group-pass">
         <label for="password">
-          <input type="password" class="form-input-text" name="password" placeholder="Password" required>
+          <input type="password" class="form-input-text" name="password" placeholder="Password"  autocomplete="off" required>
         </label>
       </div>
       <input type="submit" class="btn-submit" value="Login">

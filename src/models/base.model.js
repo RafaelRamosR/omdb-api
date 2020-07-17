@@ -37,7 +37,7 @@ const deleteStorage = (key, divContent) => {
   session
 */
 const verificateSession = () => {
-  return sessionStorage.getItem('userSession')
+  return sessionStorage.getItem('userSession');
 }
 
 const getUserData = (typeData) => {
@@ -60,7 +60,7 @@ const getUserData = (typeData) => {
   }
 }
 
-const setUserData = (typeData,newData) => {
+const setUserData = (typeData, newData) => {
   const userKey = sessionStorage.getItem('userId');
   const dataUser = getStorage(userKey);
 
@@ -98,9 +98,9 @@ const setUserData = (typeData,newData) => {
 const favoriteToggle = (idMovie) => {
   const arrMovies = getUserData('movies');
 
-  if(!arrMovies.includes(idMovie)){
+  if (!arrMovies.includes(idMovie)) {
     arrMovies.push(idMovie);
-  }else{
+  } else {
     const index = arrMovies.indexOf(idMovie); // obtenemos el indice
     arrMovies.splice(index, 1); // 1 es la cantidad de elemento a eliminar
   }
@@ -108,16 +108,21 @@ const favoriteToggle = (idMovie) => {
   setUserData('movies', arrMovies);
 }
 
-const getMovies = async (typeSearch, movie, page = 1) => {
+const getMovies = async (typeSearch, movie, page) => {
   const key = '8cba7ddb';
-    const response = await fetch(
-      `http://www.omdbapi.com/?${typeSearch}=${movie}&page=${page}&type=movie&apikey=${key}`
-    );
-    const data = await response.json();
+  const apiUrl = `http://www.omdbapi.com/`;
+  let apiParameters = `?${typeSearch}=${movie}&page=${page}&type=movie&apikey=${key}`;
 
-    if (data.Poster === 'N/A') {
-      data.Poster = './assets/img/not-found.png';
-    }
+  if (page === 'full' || page === 'short') {
+    apiParameters = `?${typeSearch}=${movie}&plot=${page}&type=movie&apikey=${key}`;
+  }
+
+  const response = await fetch(apiUrl + apiParameters);
+  const data = await response.json();
+
+  if (data.Poster === 'N/A') {
+    data.Poster = './assets/img/not-found.png';
+  }
   return data;
 };
 

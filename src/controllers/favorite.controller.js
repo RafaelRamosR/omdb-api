@@ -19,16 +19,18 @@ const favorite = async () => {
     return fragment;
   }
 
-  data.forEach(data => {
+  data.forEach(e => {
     filmSearchSection.innerHTML += `
       <div class='card-left'>
         <div class='card-image'>
-          <img src='${data.Poster}'>
+          <img src='${e.Poster}'>
         </div>
         <div class='card-text'>
-          <button class="btn-favorite remove-favorite" data-id="${data.imdbID}"></button>
-          <h1 class="card-title">${data.Title}</h1>
-          <p>${data.Year}</p>
+          <button class="btn-favorite remove-favorite" data-id="${e.imdbID}"></button>
+          <h1 class="card-title">
+            <a href="#/info?movie=${e.imdbID}&plot=full">${e.Title}</a>
+          </h1>
+          <p>${e.Year}</p>
         </div>
       </div>
     `;
@@ -37,9 +39,10 @@ const favorite = async () => {
     const btnFavorites = filmSearchSection.querySelectorAll('.btn-favorite');
     for (const btn of btnFavorites) {
       btn.addEventListener('click', (e) => {
-        e.target.classList.toggle('add-favorite');
-        e.target.classList.toggle('remove-favorite');
         model.favoriteToggle(e.target.dataset.id);
+        // Ruta de la tarjeta
+        const cardMovie = e.composedPath()[2];
+        cardMovie.remove();
       });
     }
   });
