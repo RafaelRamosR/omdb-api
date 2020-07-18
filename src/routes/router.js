@@ -1,56 +1,25 @@
-import pages from '../controllers/index';
+import helpRouter from '../helpers/router.helper.js';
+import pages from '../controllers/index.js';
 
-const routeValidation = (route) => {
-  const loginStatus = sessionStorage.getItem('loginStatus');
-  let valueRoute = route;
-  if (loginStatus === null) {
-    sessionStorage.setItem('loginStatus', 'false');
-  }
-
-  if (loginStatus === 'false') {
-    location.replace('#/login');
-    valueRoute = '#/login';
-  }
-
-  if (loginStatus === 'true' && route === '#/login') {
-    location.replace('#/home');
-    valueRoute = '#/home';
-  }
-  return valueRoute;
-};
-
-const routeParameters = (route) => {
-  const parameters = [route];
-
-  if (route.startsWith('#/home?') || route.startsWith('#/info?')) {
-    const clearRoute = route.split(/[?||&]/);
-    parameters[0] = [clearRoute[0]];
-    parameters[1] = [clearRoute[1].split('=')[1]];
-    parameters[2] = [clearRoute[2].split('=')[1]];
-  }
-  return parameters;
-};
-
-export default router = async (route) => {
-  let newRoute = route;
+const router = async (route) => {
   const fragment = document.createDocumentFragment();
+  // Main container where the SPA will be loaded
   const content = document.getElementById('root');
   content.innerHTML = '';
 
-  const parameters = routeParameters(route);
-  newRoute = [parameters[0]];
-  const movie = parameters[1];
-  const page = parameters[2];
+  // Extract link parameters, if they exist
+  const parameters = helpRouter.routeParameters(route);
+  // Determine a route based on user session
+  const newRoute = helpRouter.routeValidation(parameters[0]);
 
-  newRoute = routeValidation(route);
-
+  // Add view based on route
   switch (newRoute) {
     case '#/login': {
       fragment.appendChild(pages.login());
       break;
     }
     case '#/home': {
-      fragment.appendChild(await pages.home(movie, page));
+      fragment.appendChild(await pages.home(parameters[1], parameters[2]));
       break;
     }
     case '#/favorite': {
@@ -58,7 +27,7 @@ export default router = async (route) => {
       break;
     }
     case '#/info': {
-      fragment.appendChild(await pages.infoMovie(movie, page));
+      fragment.appendChild(await pages.infoMovie(parameters[1], parameters[2]));
       break;
     }
     case '#/logout': {
@@ -71,3 +40,5 @@ export default router = async (route) => {
 
   return content.appendChild(fragment);
 };
+
+export default router;

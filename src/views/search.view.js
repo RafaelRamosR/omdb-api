@@ -1,4 +1,4 @@
-export default searchView = `
+const searchView = `
   <article class="row">
     <form class="formSearch" autocomplete="off">
       <label for="searchFilms">
@@ -12,3 +12,5 @@ export default searchView = `
   <footer class="pagination">
   </footer>
 `;
+
+export default searchView;

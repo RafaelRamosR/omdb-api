@@ -1,19 +1,22 @@
-import infoView from '../views/info.view';
-import model from '../models/base.model';
+import infoView from '../views/info.view.js';
+import model from '../models/base.model.js';
 
-export default infoMovie = async (movie, page) => {
+const infoMovie = async (movie, page) => {
   const infoSection = document.createElement('section');
   infoSection.classList.add('main-movie');
+  // View is added
   infoSection.innerHTML = infoView;
   const movieCard = infoSection.querySelector('.movie-card');
 
-  // Hacer la petición de la búqueda
+  // Make the selected movie request
   const data = await model.getMovies('i', movie, page);
+  // If the answer is wrong, show error message
   if (data.Response === 'False') {
     infoSection.innerHTML = '<p class="notResult">No se encontraron resultados 🧐</p>';
     return infoSection;
   }
 
+  // If the answer is OK, show the movie information
   movieCard.innerHTML += `
     <div class="poster-float">
       <img src="${data.Poster}" class="poster-img" alt="${data.Title}">
@@ -41,3 +44,5 @@ export default infoMovie = async (movie, page) => {
 
   return infoSection;
 };
+
+export default infoMovie;

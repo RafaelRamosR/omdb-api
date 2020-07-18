@@ -1,4 +1,4 @@
-import model from '../models/base.model';
+import model from '../models/base.model.js';
 
 const itemUser = (item) => {
   const fragment = document.createDocumentFragment();
@@ -17,7 +17,7 @@ const itemUser = (item) => {
   item.appendChild(fragment);
 };
 
-export default navbarItemsToggle = (logged) => {
+const navbarItemsToggle = (logged) => {
   const infoUser = document.getElementById('infoUser');
   const navLogin = document.getElementById('login');
   const navLogout = document.getElementById('logout');
@@ -37,3 +37,5 @@ export default navbarItemsToggle = (logged) => {
     infoUser.textContent = '';
   }
 };
+
+export default navbarItemsToggle;

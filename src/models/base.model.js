@@ -12,10 +12,12 @@ const getStorage = (key) => {
 };
 
 /*
-  session
+  User session
 */
 const verificateSession = () => sessionStorage.getItem('userSession');
-
+/*
+  Obtain specific data from the logged in user
+*/
 const getUserData = (typeData) => {
   const userKey = sessionStorage.getItem('userId');
   const dataUser = getStorage(userKey);
@@ -36,6 +38,9 @@ const getUserData = (typeData) => {
   }
 };
 
+/*
+  Add new user or load the data of an already registered user
+*/
 const setUserData = (typeData, newData) => {
   const userKey = sessionStorage.getItem('userId');
   const dataUser = getStorage(userKey);
@@ -71,6 +76,9 @@ const setUserData = (typeData, newData) => {
   return setStorage(userKey, newDataUser);
 };
 
+/*
+  Add or remove favorite movies
+*/
 const favoriteToggle = (idMovie) => {
   const arrMovies = getUserData('movies');
 
@@ -84,6 +92,10 @@ const favoriteToggle = (idMovie) => {
   setUserData('movies', arrMovies);
 };
 
+/*
+  Try to handle API
+  It is not much, but it is honest work
+*/
 const getMovies = async (typeSearch, movie, page) => {
   const key = '8cba7ddb';
   const apiUrl = 'http://www.omdbapi.com/';
@@ -94,7 +106,7 @@ const getMovies = async (typeSearch, movie, page) => {
   }
 
   const response = await fetch(apiUrl + apiParameters);
-  const data = await response.json();
+  const data = response.json();
 
   if (data.Poster === 'N/A') {
     data.Poster = './assets/img/not-found.png';
@@ -102,7 +114,7 @@ const getMovies = async (typeSearch, movie, page) => {
   return data;
 };
 
-export default model = {
+const model = {
   verificateSession,
   setStorage,
   getStorage,
@@ -111,3 +123,4 @@ export default model = {
   favoriteToggle,
   getMovies,
 };
+export default model;

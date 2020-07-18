@@ -1,5 +1,6 @@
-import router from './routes/router';
+import router from './routes/router.js';
 
+// Capture the hash that determines the route and view
 const init = () => {
   router(window.location.hash);
 
@@ -10,6 +11,7 @@ const init = () => {
 
 window.addEventListener('load', init);
 
+// Responsive navbar functions
 const classToggle = () => {
   const navs = document.querySelectorAll('.nav-items');
   navs.forEach((nav) => nav.classList.toggle('nav-toggleShow'));

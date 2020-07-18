@@ -1,7 +1,12 @@
-import navbarItemsToggle from '../helpers/navbar.helper';
+import navbarItemsToggle from '../helpers/navbar.helper.js';
 
-export default logout = () => {
+// Actions to log out
+const logout = () => {
+  // Hide menu options for logged in users
   navbarItemsToggle(false);
+  // Clean user session and return to login
   sessionStorage.clear();
   location.replace('#/login');
 };
+
+export default logout;

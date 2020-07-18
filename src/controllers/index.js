@@ -1,11 +1,12 @@
-import login from './login.controller';
-import home from './search.controller';
-import favorite from './favorite.controller';
-import logout from './logout.controller';
-import infoMovie from './info.controller';
-import notFound from './404.controller';
+import login from './login.controller.js';
+import home from './search.controller.js';
+import favorite from './favorite.controller.js';
+import logout from './logout.controller.js';
+import infoMovie from './info.controller.js';
+import notFound from './404.controller.js';
 
-export default pages = {
+// Export all controllers
+const pages = {
   login,
   home,
   favorite,
@@ -13,3 +14,5 @@ export default pages = {
   infoMovie,
   notFound,
 };
+
+export default pages;

@@ -1,22 +1,18 @@
-# OMBd API - SPA
+# OMBd API - SPA 🧐
 A simple example of a Single Page Application using Javascript, HTML, and CSS.
 
-Tools used in this example are:
-* Webpack
-* Sass
+## Getting Started 🚀
+1. Clone the repository: 
+```bash
+git clone git@github.com:RafaelRamosR/cms-blog.git
+```
 
-# Installation
-First install dependencies
+2. Install the dependencies: 
 ```shell
 npm install
 ```
 
-To run the example in development mode
+3. Run the local server and you're done: 
 ```shell
-npm start
-```
-
-To build the project
-```shell
-npm run build
+gulp
 ```

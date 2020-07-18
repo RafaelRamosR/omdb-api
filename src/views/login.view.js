@@ -1,4 +1,4 @@
-export default viewLogin = `
+const viewLogin = `
   <section class="row">
     <form class="form-main" autocomplete="off">
       <div class="form-group-radio">
@@ -31,3 +31,5 @@ export default viewLogin = `
     </form>
   </section>
 `;
+
+export default viewLogin;

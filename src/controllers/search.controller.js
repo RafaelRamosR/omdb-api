@@ -1,36 +1,40 @@
-import model from '../models/base.model';
-import searchView from '../views/search.view';
+import model from '../models/base.model.js';
+import searchView from '../views/search.view.js';
 
 const sectionResult = document.createElement('section');
+// View is added
 sectionResult.innerHTML = searchView;
 
-export default home = async (movie, page) => {
+const home = async (movie, page) => {
   const filmSearchSection = sectionResult.querySelector('.card-container');
   const paginationSection = sectionResult.querySelector('.pagination');
   filmSearchSection.innerHTML = '';
   paginationSection.innerHTML = '';
 
+  // If the search parameters are not defined, the main view is displayed.
   if (movie === undefined && page === undefined) {
     return sectionResult;
   }
 
-  // Hacer la petición de la búqueda
+  // Request API
   const data = await model.getMovies('s', movie, page);
+  // If the answer is false, the movie does not exist
   if (data.Response === 'False') {
     filmSearchSection.innerHTML = '<p class="notResult">No results found 🧐</p>';
     return sectionResult;
   }
 
+  // API response
   const searchResults = data.Search;
-  // Inssertar las tarjetas donse se muestran las películas
   searchResults.forEach((e) => {
     const includeMovie = model.getUserData('movies').includes(e.imdbID);
     const favoriteClass = includeMovie === true ? 'remove-favorite' : 'add-favorite';
-
+    // If the movie poster is not available, a default image is added
     if (e.Poster === 'N/A') {
       e.Poster = './assets/img/not-found.png';
     }
 
+    // Insert movie cards
     filmSearchSection.innerHTML += `
       <div class='card-left'>
         <div class='card-image'>
@@ -47,7 +51,7 @@ export default home = async (movie, page) => {
     `;
   });
 
-  // Seleccionar todos los botones de favoritos
+  // Add buttons to add or remove from favorites
   const btnFavorites = sectionResult.querySelectorAll('.btn-favorite');
   btnFavorites.forEach((btn) => {
     btn.addEventListener('click', (e) => {
@@ -57,10 +61,10 @@ export default home = async (movie, page) => {
     });
   });
 
-  const totalResults = [data.totalResults];
-  const totalPages = totalResults[0] > 100 ? 10 : Math.floor(totalResults[0] / 10);
-  // Inssertar las tarjetas donse se muestran las películas
-  for (let i = 0; i <= totalPages; i += 1) {
+  // Only the first 100 results will be shown
+  const totalPages = data.totalResults > 100 ? 10 : Math.floor(data.totalResults / 10);
+  // Add paging buttons
+  for (let i = 1; i <= totalPages; i += 1) {
     const pageClass = i === parseInt(page, 10) ? 'page-active' : 'page-num';
     paginationSection.innerHTML += `
       <span class="${pageClass}">
@@ -72,6 +76,7 @@ export default home = async (movie, page) => {
   return sectionResult;
 };
 
+// A slug is created to redirect to a new search
 const formSearch = sectionResult.querySelector('.formSearch');
 formSearch.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -81,3 +86,5 @@ formSearch.addEventListener('submit', (e) => {
   formSearch.reset();
   return location.replace(`#/home?movie=${nameFilm}&page=1`);
 });
+
+export default home;

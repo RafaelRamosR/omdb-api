@@ -1,13 +1,14 @@
-import model from '../models/base.model';
-import navbarItemsToggle from '../helpers/navbar.helper';
-import userVerification from '../helpers/login.helper';
-import viewLogin from '../views/login.view';
+import model from '../models/base.model.js';
+import navbarItemsToggle from '../helpers/navbar.helper.js';
+import userVerification from '../helpers/login.helper.js';
+import viewLogin from '../views/login.view.js';
 
-export default login = () => {
-  const divElement = document.createElement('div');
-  divElement.innerHTML = viewLogin;
-
-  const formLogin = divElement.querySelector('.form-main');
+const login = () => {
+  const loginContent = document.createElement('div');
+  // View is added
+  loginContent.innerHTML = viewLogin;
+  // Login form
+  const formLogin = loginContent.querySelector('.form-main');
   formLogin.addEventListener('submit', (e) => {
     e.preventDefault();
     const et = e.target;
@@ -20,11 +21,15 @@ export default login = () => {
     const userObject = userVerification(key, picture, username, password);
     // Save task
     model.setStorage(key, userObject);
+    // Change session state and create user id
     sessionStorage.setItem('loginStatus', 'true');
     sessionStorage.setItem('userId', key);
+    // Show menu options for logged in users
     navbarItemsToggle(true);
     location.replace('#/home');
   });
 
-  return divElement;
+  return loginContent;
 };
+
+export default login;
