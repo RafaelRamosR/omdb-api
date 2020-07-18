@@ -10,7 +10,7 @@ const router = async (route) => {
   // Extract link parameters, if they exist
   const parameters = helpRouter.routeParameters(route);
   // Determine a route based on user session
-  const newRoute = helpRouter.routeValidation(parameters[0]);
+  const newRoute = helpRouter.routeRedirection(parameters[0]);
 
   // Add view based on route
   switch (newRoute) {
