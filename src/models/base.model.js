@@ -1,9 +1,7 @@
 /*
   Save data to current localStorage
 */
-const setStorage = (key, value) => {
-  return localStorage.setItem(key, JSON.stringify(value));
-};
+const setStorage = (key, value) => localStorage.setItem(key, JSON.stringify(value));
 
 /*
   Access stored data
@@ -14,31 +12,9 @@ const getStorage = (key) => {
 };
 
 /*
-  Iterate keys to show all tasks stored in localStorage
-*/
-const getAllStorage = () => {
-  // divTask.textContent = '';
-  for (let i = 0; i <= localStorage.length - 1; i += 1) {
-    const key = localStorage.key(i);
-    getStorage(key);
-  }
-};
-
-/*
-  Remove parent container from button
-  and delete an item from localStorage
-*/
-const deleteStorage = (key, divContent) => {
-  divContent.remove();
-  localStorage.removeItem(key);
-};
-
-/*
   session
 */
-const verificateSession = () => {
-  return sessionStorage.getItem('userSession');
-}
+const verificateSession = () => sessionStorage.getItem('userSession');
 
 const getUserData = (typeData) => {
   const userKey = sessionStorage.getItem('userId');
@@ -58,7 +34,7 @@ const getUserData = (typeData) => {
     default:
       return false;
   }
-}
+};
 
 const setUserData = (typeData, newData) => {
   const userKey = sessionStorage.getItem('userId');
@@ -90,10 +66,10 @@ const setUserData = (typeData, newData) => {
     name: dataUser.name,
     pass: dataUser.pass,
     favoriteMovies: dataUser.favoriteMovies,
-  }
+  };
 
-  setStorage(userKey, newDataUser);
-}
+  return setStorage(userKey, newDataUser);
+};
 
 const favoriteToggle = (idMovie) => {
   const arrMovies = getUserData('movies');
@@ -106,11 +82,11 @@ const favoriteToggle = (idMovie) => {
   }
 
   setUserData('movies', arrMovies);
-}
+};
 
 const getMovies = async (typeSearch, movie, page) => {
   const key = '8cba7ddb';
-  const apiUrl = `http://www.omdbapi.com/`;
+  const apiUrl = 'http://www.omdbapi.com/';
   let apiParameters = `?${typeSearch}=${movie}&page=${page}&type=movie&apikey=${key}`;
 
   if (page === 'full' || page === 'short') {
@@ -126,7 +102,7 @@ const getMovies = async (typeSearch, movie, page) => {
   return data;
 };
 
-const model = {
+export default model = {
   verificateSession,
   setStorage,
   getStorage,
@@ -134,6 +110,4 @@ const model = {
   getUserData,
   favoriteToggle,
   getMovies,
-}
-
-export { model };
+};

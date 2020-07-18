@@ -1,8 +1,8 @@
-const searchView = `
+export default searchView = `
   <article class="row">
     <form class="formSearch" autocomplete="off">
       <label for="searchFilms">
-        <input type="text" class="search-input" name="searchFilms" placeholder="¿Qué pelicula quieres buscar?">
+        <input type="text" class="search-input" name="searchFilms" placeholder="What movie do you want to look for today?">
       </label>
       <input type="submit" class="btn-submit btn-search" value="Search">
     </form>
@@ -12,5 +12,3 @@ const searchView = `
   <footer class="pagination">
   </footer>
 `;
-
-export { searchView };

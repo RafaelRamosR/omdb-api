@@ -1,8 +1,9 @@
-import { model } from '../models/base.model.js';
+import model from '../models/base.model';
 
-const userVerification = (key, picture, username, password) => {
+export default userVerification = (key, picture, username, password) => {
   const localData = model.getStorage(key);
   let userData = {};
+  let img = picture;
 
   if (localData !== null) {
     userData = localData;
@@ -10,17 +11,15 @@ const userVerification = (key, picture, username, password) => {
   }
 
   if (picture === '') {
-    picture = 'default.png';
+    img = 'default.png';
   }
 
   userData = {
     id: key,
-    photo: picture,
+    photo: img,
     name: username,
     pass: password,
     favoriteMovies: [],
-  }
+  };
   return userData;
-}
-
-export { userVerification };
+};

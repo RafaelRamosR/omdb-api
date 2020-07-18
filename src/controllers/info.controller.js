@@ -1,11 +1,11 @@
-import { infoView } from '../views/info.view.js';
-import { model } from '../models/base.model.js'
+import infoView from '../views/info.view';
+import model from '../models/base.model';
 
-const infoMovie = async (movie, page) => {
+export default infoMovie = async (movie, page) => {
   const infoSection = document.createElement('section');
   infoSection.classList.add('main-movie');
   infoSection.innerHTML = infoView;
-  const movieCard = infoSection.querySelector('.movie-card')
+  const movieCard = infoSection.querySelector('.movie-card');
 
   // Hacer la petición de la búqueda
   const data = await model.getMovies('i', movie, page);
@@ -16,20 +16,20 @@ const infoMovie = async (movie, page) => {
 
   movieCard.innerHTML += `
     <div class="poster-float">
-      <img src="${data.Poster}">
+      <img src="${data.Poster}" class="poster-img" alt="${data.Title}">
     </div>
     <div class="details-card">
       <h1 class="title movie-title">${data.Title}</h1>
       <div class="details">
         <ul class="details-items">
-          <li><span class="bold">Year:</span>${data.Year}</li>
-          <li><span class="bold">Rated:</span>${data.Rated}</li>
-          <li><span class="bold">Released:</span>${data.Released}</li>
-          <li><span class="bold">Runtime:</span>${data.Runtime}</li>
-          <li><span class="bold">Genre:</span>${data.Genre}</li>
-          <li><span class="bold">Director:</span>${data.Director}</li>
-          <li><span class="bold">Writer:</span>${data.Writer}</li>
-          <li><span class="bold">Actors:</span>${data.Actors}</li>
+          <li><span class="bold">Year:</span> ${data.Year}</li>
+          <li><span class="bold">Rated:</span> ${data.Rated}</li>
+          <li><span class="bold">Released:</span> ${data.Released}</li>
+          <li><span class="bold">Runtime:</span> ${data.Runtime}</li>
+          <li><span class="bold">Genre:</span> ${data.Genre}</li>
+          <li><span class="bold">Director:</span> ${data.Director}</li>
+          <li><span class="bold">Writer:</span> ${data.Writer}</li>
+          <li><span class="bold">Actors:</span> ${data.Actors}</li>
         </ul>
       </div>
     </div>
@@ -40,6 +40,4 @@ const infoMovie = async (movie, page) => {
   `;
 
   return infoSection;
-}
-
-export { infoMovie };
+};

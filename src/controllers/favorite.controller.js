@@ -1,7 +1,7 @@
-import { model } from '../models/base.model.js';
-import { favoriteView } from "../views/favorite.view.js";
+import model from '../models/base.model';
+import favoriteView from '../views/favorite.view';
 
-const favorite = async () => {
+export default favorite = async () => {
   const fragment = document.createDocumentFragment();
   const favoriteSection = document.createElement('section');
   favoriteSection.innerHTML = favoriteView;
@@ -9,17 +9,17 @@ const favorite = async () => {
   const favoriteMovies = model.getUserData('movies');
   const data = [];
 
-  for (const movie of favoriteMovies) {
-    data.push(await model.getMovies('i', movie));
-  }
+  favoriteMovies.forEach((e) => {
+    e.push(model.getMovies('i', movie));
+  });
 
   if (data.length === 0) {
-    filmSearchSection.innerHTML = '<p class="notResult">No tienes películas favoritas 😥</p>';
+    filmSearchSection.innerHTML = '<p class="notResult">You do not have favorite movies 😥</p>';
     fragment.appendChild(favoriteSection);
     return fragment;
   }
 
-  data.forEach(e => {
+  data.forEach((e) => {
     filmSearchSection.innerHTML += `
       <div class='card-left'>
         <div class='card-image'>
@@ -37,18 +37,16 @@ const favorite = async () => {
 
     // Seleccionar todos los botones de favoritos
     const btnFavorites = filmSearchSection.querySelectorAll('.btn-favorite');
-    for (const btn of btnFavorites) {
-      btn.addEventListener('click', (e) => {
-        model.favoriteToggle(e.target.dataset.id);
+    btnFavorites.forEach((btn) => {
+      btn.addEventListener('click', (ev) => {
+        model.favoriteToggle(ev.target.dataset.id);
         // Ruta de la tarjeta
-        const cardMovie = e.composedPath()[2];
+        const cardMovie = ev.composedPath()[2];
         cardMovie.remove();
       });
-    }
+    });
   });
 
   fragment.appendChild(favoriteSection);
   return fragment;
 };
-
-export { favorite };

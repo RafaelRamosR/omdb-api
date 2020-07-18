@@ -1,20 +1,19 @@
-import { router } from "./routes/router.js";
+import router from './routes/router';
 
 const init = () => {
   router(window.location.hash);
 
-  window.addEventListener("hashchange", () => {
+  window.addEventListener('hashchange', () => {
     router(window.location.hash);
   });
 };
 
-window.addEventListener("load", init);
+window.addEventListener('load', init);
 
 const classToggle = () => {
   const navs = document.querySelectorAll('.nav-items');
-  navs.forEach(nav => nav.classList.toggle('nav-toggleShow'));
-}
+  navs.forEach((nav) => nav.classList.toggle('nav-toggleShow'));
+};
 
 const btnNav = document.querySelector('.nav-link-toggle');
 btnNav.addEventListener('click', classToggle);
-

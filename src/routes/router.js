@@ -1,65 +1,67 @@
-import { pages } from '../controllers/index.js';
+import pages from '../controllers/index';
 
 const routeValidation = (route) => {
   const loginStatus = sessionStorage.getItem('loginStatus');
+  let valueRoute = route;
   if (loginStatus === null) {
     sessionStorage.setItem('loginStatus', 'false');
   }
 
   if (loginStatus === 'false') {
     location.replace('#/login');
-    route = '#/login';
+    valueRoute = '#/login';
   }
 
   if (loginStatus === 'true' && route === '#/login') {
     location.replace('#/home');
-    route = '#/home';
+    valueRoute = '#/home';
   }
-  return route;
-}
+  return valueRoute;
+};
 
 const routeParameters = (route) => {
-  let parameters = [route];
+  const parameters = [route];
 
   if (route.startsWith('#/home?') || route.startsWith('#/info?')) {
     const clearRoute = route.split(/[?||&]/);
-    parameters[0] = clearRoute[0];
-    parameters[1] = clearRoute[1].split('=')[1];
-    parameters[2] = clearRoute[2].split('=')[1];
+    parameters[0] = [clearRoute[0]];
+    parameters[1] = [clearRoute[1].split('=')[1]];
+    parameters[2] = [clearRoute[2].split('=')[1]];
   }
   return parameters;
-}
+};
 
-const router = async (route) => {
+export default router = async (route) => {
+  let newRoute = route;
   const fragment = document.createDocumentFragment();
-  let content = document.getElementById("root");
+  const content = document.getElementById('root');
   content.innerHTML = '';
 
   const parameters = routeParameters(route);
-  route = parameters[0];
+  newRoute = [parameters[0]];
   const movie = parameters[1];
   const page = parameters[2];
 
-  route = routeValidation(route);
+  newRoute = routeValidation(route);
 
-  switch (route) {
-    case "#/login": {
+  switch (newRoute) {
+    case '#/login': {
       fragment.appendChild(pages.login());
       break;
     }
-    case "#/home": {
+    case '#/home': {
       fragment.appendChild(await pages.home(movie, page));
       break;
     }
-    case "#/favorite": {
+    case '#/favorite': {
       fragment.appendChild(await pages.favorite());
       break;
     }
-    case "#/info": {
+    case '#/info': {
       fragment.appendChild(await pages.infoMovie(movie, page));
       break;
     }
-    case "#/logout": {
+    case '#/logout': {
       return pages.logout();
     }
     default: {
@@ -69,5 +71,3 @@ const router = async (route) => {
 
   return content.appendChild(fragment);
 };
-
-export { router };

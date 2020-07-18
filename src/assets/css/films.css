@@ -3,14 +3,14 @@
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   justify-content: center;
-  align-content: center;
+  align-content: center;;
 }
 
 .search-input {
   width: 100%;
   background: transparent;
   border: 0;
-  border-bottom: 2px solid #009688;
+  border-bottom: 2px solid var(--dark-blue);
   padding: 1em 0 0.8em;
   margin-bottom: 20px;
   text-align: center;
@@ -24,8 +24,8 @@
 .btn-search {
   height: 1.5em;
   margin-bottom: 20px;
-  background-color: #2F558E;
-  box-shadow: 0 5px 0 0 #1D3C6A;
+  background-color: var(--blue);
+  box-shadow: 0 5px 0 0 var(--dark-blue);
   grid-column: 1;
   grid-row: 2;
   justify-self: center;
@@ -49,19 +49,13 @@
   font-size: 1.2em;
 }
 
-.card-right, .card-left {
+.card-left {
   display: flex;
   flex-wrap: nowrap;
   height: 100%;
   width: 100%;
-  box-shadow: 0px 3px 9px 1px rgba(0, 10, 20, 0.2);
-  background-color: #ffffff;
-}
-
-.card-right {
-  flex-direction: row-reverse;
-  grid-column: auto / span 2;
-  grid-row: auto / span 1;
+  box-shadow: 0 3px 9px 1px rgba(0, 10, 20, 0.2);
+  background-color: var(--white);
 }
 
 .card-left {
@@ -71,40 +65,25 @@
 }
 
 .card-image {
+  height: 100%;
+  width: 50%;
   display: flex;
 }
 
-.card-left .card-image, .card-right .card-image {
-  height: 100%;
-  width: 50%;
-}
-
-.card-image img {
+.card-poster {
   width: 100%;
   object-fit: cover;
 }
 
 .card-text {
+  width: 50%;
+  height: 80%;
+  padding-right: 36.8px;
   align-self: center;
   padding: 23px;
-}
-
-.card-right .card-text {
-  height: 80%;
-  width: 50%;
-  padding-left: 36.8px;
-}
-
-.card-left .card-text {
-  height: 80%;
-  width: 50%;
-  padding-right: 36.8px;
-}
-
-.card-text p {
   margin: 0;
   line-height: 1.35em;
-  color: #334455;
+  color: var(--gray);
 }
 
 .add-favorite, .remove-favorite {
@@ -132,7 +111,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  background-color: #fefefe;
+  background-color: var(--white);
   padding: 1rem;
   min-height: 20rem;
   border-radius: 5px;
@@ -147,7 +126,7 @@
   margin-right: 10px;
 }
 
-.poster-float img {
+.poster-img {
   border-radius: 5px;
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
@@ -201,12 +180,11 @@
   margin: 10px;
   display: inline-block;
   background: #a9acd8;
-  cursor: pointer;
 }
 
 .page-active {
-  background: #0771ca;
-  color: white;
+  background-color: var(--red);
+  color: var(--white);
 }
 
 .bold {

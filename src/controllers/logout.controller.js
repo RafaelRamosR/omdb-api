@@ -1,9 +1,7 @@
-import { navbarItemsToggle } from '../helpers/navbar.helper.js';
+import navbarItemsToggle from '../helpers/navbar.helper';
 
-const logout = () => {
+export default logout = () => {
   navbarItemsToggle(false);
   sessionStorage.clear();
   location.replace('#/login');
 };
-
-export { logout };

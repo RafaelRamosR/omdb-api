@@ -1,12 +1,12 @@
-import { model } from '../models/base.model.js';
-import { navbarItemsToggle } from '../helpers/navbar.helper.js';
-import { userVerification } from '../helpers/login.helper.js';
-import { viewLogin } from '../views/login.view.js';
+import model from '../models/base.model';
+import navbarItemsToggle from '../helpers/navbar.helper';
+import userVerification from '../helpers/login.helper';
+import viewLogin from '../views/login.view';
 
-const login = () => {
+export default login = () => {
   const divElement = document.createElement('div');
   divElement.innerHTML = viewLogin;
-  
+
   const formLogin = divElement.querySelector('.form-main');
   formLogin.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -28,5 +28,3 @@ const login = () => {
 
   return divElement;
 };
-
-export { login };

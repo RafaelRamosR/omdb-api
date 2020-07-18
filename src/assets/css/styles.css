@@ -1,14 +1,18 @@
 :root {
   /* colors */
-  --green: #2FBF71;
-  --yellow: #FFB30F;
-  --red: #FD151B;
-  --white: #FFFFFF;
+  --dark-blue: #1d3557;
+  --blue: #457b9d;
+  --light-blue: #a8dadc;
+  --red: #e63946;
+  --white: #f1faee;
+  --gray: #757586;
+  /* fonts */
+  --fira-sans: 'Fira Sans';
 }
 
 body {
-  background-color: #D1D7DC;
-  font-family: 'Fira Sans', sans-serif;
+  background-color: var(--light-blue);
+  font-family: var(--fira-sans), sans-serif;
 }
 
 .container {
@@ -58,15 +62,13 @@ body {
 }
 
 .form-group-radio {
-  background-color: var(--white);
-  border-color: var(--yellow);
   display: block;
   margin: 10px 0;
   position: relative;
   overflow: hidden;
 }
 
-.form-group-radio input {
+.radio-input {
   width: 32px;
   height: 32px;
   z-index: 2;
@@ -79,7 +81,7 @@ body {
 
 /*size*/
 
-.form-group-radio label {
+.label {
   width: 100%;
   height: 250px;
   display: block;
@@ -92,29 +94,29 @@ body {
   background-size: cover;
 }
 
-.form-group-radio label[for="radioColor1"] {
+.radio-label1 {
   background-image: url("../img/avatar1.png");
 }
 
-.form-group-radio label[for="radioColor2"] {
+.radio-label2 {
   background-image: url("../img/avatar2.png");
 }
 
-.form-group-radio label[for="radioColor3"] {
+.radio-label3 {
   background-image: url("../img/avatar3.png");
 }
 
-.form-group-radio label[for="radioColor4"] {
+.radio-label4 {
   background-image: url("../img/avatar4.png");
 }
 
 .form-group-radio :checked~label {
-  box-shadow: inset 0 0 0 5px #009688;
+  box-shadow: inset 0 0 0 5px var(--blue);
   transition: all 0.5s ease-out;
 }
 
 .btn-submit {
-  background: #2F558E;
+  background: var(--blue);
   height: 200%;
   color: #fff;
   cursor: pointer;
@@ -124,7 +126,7 @@ body {
   outline: none;
   border: none;
   border-radius: 5px;
-  box-shadow: 0 5px 0 0 #1D3C6A;
+  box-shadow: 0 5px 0 0 var(--dark-blue);
   grid-column: 2/4;
   grid-row: 3;
 }

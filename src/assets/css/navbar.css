@@ -1,9 +1,8 @@
 .nav {
-  background-color: #46ACC2;
+  background-color: var(--blue);
   display: flex;
   padding: 0 16px;
-  font-family: sans-serif;
-  color: white;
+  color: var(--white);
   font-size: 21px;
 }
 
@@ -24,7 +23,7 @@
 
 .nav-link--a {
   text-decoration: none;
-  color: white;
+  color: var(--white);
 }
 
 .right {
@@ -41,20 +40,16 @@
 }
 
 .avatar-name {
-  color: red;
+  color: var(--light-blue);
 }
 
 .avatar-img {
   position: absolute;
   display: flex;
-  max-width: 70%;
+  max-width: 50px;
   border-radius: 50%;
-  top: -40%;
-  left: -90%;
-}
-
-.hidden {
-  display: none;
+  top: -14px;
+  left: -3em;
 }
 
 @media only screen and (max-width: 768px) {
@@ -85,4 +80,8 @@
   .avatar-img {
     display: none;
   }
+}
+
+.hidden {
+  display: none;
 }
