@@ -16,6 +16,11 @@ const infoMovie = async (movie, page) => {
     return infoSection;
   }
 
+  // Prevent images not found
+  if (data.Poster === 'N/A') {
+    data.Poster = './assets/img/not-found.png';
+  }
+
   // If the answer is OK, show the movie information
   movieCard.innerHTML += `
     <div class="poster-float">

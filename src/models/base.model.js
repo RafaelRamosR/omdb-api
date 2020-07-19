@@ -108,9 +108,6 @@ const getMovies = async (typeSearch, movie, page) => {
   const response = await fetch(apiUrl + apiParameters);
   const data = response.json();
 
-  if (data.Poster === 'N/A') {
-    data.Poster = './assets/img/not-found.png';
-  }
   return data;
 };
 
