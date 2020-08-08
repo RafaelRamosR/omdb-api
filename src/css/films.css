@@ -35,7 +35,7 @@
   box-shadow: 0 0 transparent;
 }
 
-.card-container {
+.card-container, .favorite-container {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
@@ -96,11 +96,11 @@
 }
 
 .add-favorite::before {
-  content: "⭐";
+  content: "🖤";
 }
 
 .remove-favorite::before {
-  content: "🤩";
+  content: "💖";
 }
 
 .main-movie {

@@ -95,19 +95,19 @@ body {
 }
 
 .radio-label1 {
-  background-image: url("../img/avatar1.png");
+  background-image: url("../assets/img/avatar1.png");
 }
 
 .radio-label2 {
-  background-image: url("../img/avatar2.png");
+  background-image: url("../assets/img/avatar2.png");
 }
 
 .radio-label3 {
-  background-image: url("../img/avatar3.png");
+  background-image: url("../assets/img/avatar3.png");
 }
 
 .radio-label4 {
-  background-image: url("../img/avatar4.png");
+  background-image: url("../assets/img/avatar4.png");
 }
 
 .form-group-radio :checked~label {

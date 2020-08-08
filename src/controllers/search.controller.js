@@ -1,13 +1,14 @@
 import model from '../models/base.model.js';
 import searchView from '../views/search.view.js';
+import cardMovieTemplate from '../helpers/card.helper.js';
 
 const sectionResult = document.createElement('section');
 // View is added
 sectionResult.innerHTML = searchView;
+const filmSearchSection = sectionResult.querySelector('.card-container');
+const paginationSection = sectionResult.querySelector('.pagination');
 
 const home = async (movie, page) => {
-  const filmSearchSection = sectionResult.querySelector('.card-container');
-  const paginationSection = sectionResult.querySelector('.pagination');
   filmSearchSection.innerHTML = '';
   paginationSection.innerHTML = '';
 
@@ -29,36 +30,11 @@ const home = async (movie, page) => {
   searchResults.forEach((e) => {
     const includeMovie = model.getUserData('movies').includes(e.imdbID);
     const favoriteClass = includeMovie === true ? 'remove-favorite' : 'add-favorite';
-    // If the movie poster is not available, a default image is added
-    if (e.Poster === 'N/A') {
-      e.Poster = './assets/img/not-found.png';
-    }
 
     // Insert movie cards
-    filmSearchSection.innerHTML += `
-      <div class='card-left'>
-        <div class='card-image'>
-          <img src='${e.Poster}' class="card-poster" alt="${e.Title}">
-        </div>
-        <div class='card-text'>
-          <button class="btn-favorite ${favoriteClass}" data-id="${e.imdbID}"></button>
-          <h1 class="card-title">
-            <a href="#/info?movie=${e.imdbID}&plot=full">${e.Title}</a>
-          </h1>
-          <p>${e.Year}</p>
-        </div>
-      </div>
-    `;
-  });
-
-  // Add buttons to add or remove from favorites
-  const btnFavorites = sectionResult.querySelectorAll('.btn-favorite');
-  btnFavorites.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      e.target.classList.toggle('add-favorite');
-      e.target.classList.toggle('remove-favorite');
-      model.favoriteToggle(e.target.dataset.id);
-    });
+    filmSearchSection.innerHTML += cardMovieTemplate(
+      e.imdbID, e.Title, e.Poster, e.Year, favoriteClass,
+    );
   });
 
   // Only the first 100 results will be shown
@@ -67,14 +43,26 @@ const home = async (movie, page) => {
   for (let i = 1; i <= totalPages; i += 1) {
     const pageClass = i === parseInt(page, 10) ? 'page-active' : 'page-num';
     paginationSection.innerHTML += `
-      <span class="${pageClass}">
-        <a href="#/home?movie=${movie}&page=${i}">${i}</a>
-      </span>
+      <a href="#/home?movie=${movie}&page=${i}">
+        <span class="${pageClass}">${i}</span>
+      </a>
     `;
   }
 
   return sectionResult;
 };
+
+// Add buttons to add or remove from favorites
+filmSearchSection.addEventListener('click', (e) => {
+  const btnFavorite = e.target.dataset.id;
+  if (btnFavorite !== undefined) {
+    e.preventDefault();
+    e.target.classList.toggle('add-favorite');
+    e.target.classList.toggle('remove-favorite');
+    // remove from favorites list
+    model.favoriteToggle(e.target.dataset.id);
+  }
+});
 
 // A slug is created to redirect to a new search
 const formSearch = sectionResult.querySelector('.formSearch');

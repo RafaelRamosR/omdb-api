@@ -85,8 +85,10 @@ const favoriteToggle = (idMovie) => {
   if (!arrMovies.includes(idMovie)) {
     arrMovies.push(idMovie);
   } else {
-    const index = arrMovies.indexOf(idMovie); // obtenemos el indice
-    arrMovies.splice(index, 1); // 1 es la cantidad de elemento a eliminar
+    // Get the index
+    const index = arrMovies.indexOf(idMovie);
+    // 1 is the amount of item to remove
+    arrMovies.splice(index, 1);
   }
 
   setUserData('movies', arrMovies);
